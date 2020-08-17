@@ -1,15 +1,9 @@
-// import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:Gively/screens/wrapper.dart';
+
+import 'package:Gively/data/models/models.dart';
 import 'package:Gively/services/auth.dart';
-// import 'package:google_sign_in/google_sign_in.dart';
+import 'package:Gively/views/wrapper.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:Gively/models/user.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:fluttertoast/fluttertoast.dart';
-// import 'package:givelyapp/models/drive.dart';
-// import 'package:givelyapp/screens/home/drive_list.dart';
 
 void main() {
   runApp(MyApp());

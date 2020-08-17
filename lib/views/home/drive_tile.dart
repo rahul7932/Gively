@@ -1,6 +1,5 @@
+import 'package:Gively/data/models/models.dart';
 import 'package:flutter/material.dart';
-import 'package:Gively/models/drive.dart';
-import 'package:Gively/screens/home/donatationpage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DriveTile extends StatelessWidget {

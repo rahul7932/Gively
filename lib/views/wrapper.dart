@@ -1,7 +1,7 @@
+import 'package:Gively/data/models/models.dart';
+import 'package:Gively/views/authenticate/authenticate.dart';
+import 'package:Gively/views/home/home.dart';
 import 'package:flutter/material.dart';
-import 'package:Gively/screens/authenticate/authenticate.dart';
-import 'package:Gively/screens/home/home.dart';
-import 'package:Gively/models/user.dart';
 import 'package:provider/provider.dart';
 
 class Wrapper extends StatelessWidget {

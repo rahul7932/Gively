@@ -1,7 +1,7 @@
+import 'package:Gively/data/models/models.dart';
+import 'package:Gively/views/home/drive_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:Gively/models/drive.dart';
-import 'package:Gively/screens/home/drive_tile.dart';
 
 class DriveList extends StatefulWidget {
   @override
@@ -9,9 +9,9 @@ class DriveList extends StatefulWidget {
 }
 
 class _DriveListState extends State<DriveList> {
-  @override
   ScrollController _scrollController = new ScrollController();
 
+  @override
   Widget build(BuildContext context) {
     final drives = Provider.of<List<Drive>>(context);
 

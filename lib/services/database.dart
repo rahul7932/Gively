@@ -1,5 +1,5 @@
+import 'package:Gively/data/models/models.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:Gively/models/drive.dart';
 
 class DatabaseService {
   final String uid;

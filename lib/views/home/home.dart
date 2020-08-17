@@ -1,11 +1,10 @@
+import 'package:Gively/data/models/models.dart';
+import 'package:Gively/views/home/drive_list.dart';
+import 'package:Gively/views/home/information.dart';
 import 'package:flutter/material.dart';
 import 'package:Gively/services/auth.dart';
 import 'package:Gively/services/database.dart';
 import 'package:provider/provider.dart';
-import 'package:Gively/screens/home/drive_list.dart';
-import 'package:Gively/models/drive.dart';
-import 'package:Gively/screens/home/information.dart';
-import 'package:Gively/screens/home/donatationpage.dart';
 
 class Home extends StatelessWidget {
   final AuthService _auth = AuthService();

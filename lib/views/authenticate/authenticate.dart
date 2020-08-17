@@ -1,6 +1,6 @@
+import 'package:Gively/views/authenticate/register.dart';
+import 'package:Gively/views/authenticate/sign_in.dart';
 import 'package:flutter/material.dart';
-import 'package:Gively/screens/authenticate/sign_in.dart';
-import 'package:Gively/screens/authenticate/register.dart';
 
 class Authenticate extends StatefulWidget {
   @override

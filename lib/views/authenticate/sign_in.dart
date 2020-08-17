@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:Gively/services/auth.dart';
-import 'package:Gively/shared/constants.dart';
-import 'package:Gively/shared/loading.dart';
+import 'package:Gively/utils/constants.dart';
+import 'package:Gively/views/widgets/shared/loading.dart';
 
 class SignIn extends StatefulWidget {
   final Function toggleView;

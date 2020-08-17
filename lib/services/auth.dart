@@ -1,5 +1,5 @@
+import 'package:Gively/data/models/models.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:Gively/models/user.dart';
 import 'package:Gively/services/database.dart';
 
 class AuthService {
