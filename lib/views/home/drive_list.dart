@@ -13,12 +13,22 @@ class _DriveListState extends State<DriveList> {
 
   @override
   Widget build(BuildContext context) {
-    final drives = Provider.of<List<Drive>>(context);
+    //final drives = Provider.of<List<Drive>>(context);
 
+    Drive drive = Drive(
+        school: 'Loudoun County High School',
+        address: 'TestAddress',
+        description: 'desc',
+        date: '10/2/2020',
+        detailDescription: 'detail',
+        currentDonations: '50',
+        maxDonations: '100',
+    club: 'club');
+    List<Drive> drives = [drive];
     return ListView.builder(
         shrinkWrap: true,
         controller: _scrollController,
-        itemCount: 1 + drives.length - 1,
+        itemCount: drives.length,
         itemBuilder: (context, index) {
           return DriveTile(drive: drives[index]);
         });

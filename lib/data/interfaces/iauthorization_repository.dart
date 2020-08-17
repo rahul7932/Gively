@@ -6,5 +6,5 @@ abstract class IAuthorizationRepository {
   void forgotPasswordRequest(String email);
 
   void signOut();
-  
+
 }

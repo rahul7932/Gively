@@ -16,11 +16,20 @@ class AuthorizationSuccessState extends AuthorizationState {
   List<Object> get props => [user];
 }
 
-class AuthorizationFailedState extends AuthorizationState {
+class AuthorizationInvalidPasswordState extends AuthorizationState {
   @override
   List<Object> get props => [];
 }
 
+class AuthorizationInvalidEmail extends AuthorizationState {
+  @override
+  List<Object> get props => [];
+}
+
+class AuthorizationFailState extends AuthorizationState {
+  @override
+  List<Object> get props => [];
+}
 class AuthorizationPendingState extends AuthorizationState {
   @override
   List<Object> get props => [];
