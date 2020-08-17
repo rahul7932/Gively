@@ -1,7 +1,8 @@
+import 'package:Gively/blocs/authorization_bloc/authorization_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:Gively/services/auth.dart';
 import 'package:Gively/utils/constants.dart';
 import 'package:Gively/views/widgets/shared/loading.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Register extends StatefulWidget {
   final Function toggleView;
@@ -12,7 +13,6 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   bool loading = false;
 
@@ -22,9 +22,13 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    return loading
-        ? Loading()
-        : Scaffold(
+    return BlocConsumer<AuthorizationBloc, AuthorizationState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        if (state is AuthorizationPendingState) {
+          return Loading();
+        } else {
+          return Scaffold(
             resizeToAvoidBottomInset: false,
             backgroundColor: Colors.white, //grey[200],
             appBar: AppBar(
@@ -87,15 +91,9 @@ class _RegisterState extends State<Register> {
                         ),
                         onPressed: () async {
                           if (_formKey.currentState.validate()) {
-                            setState(() => loading = true);
-                            dynamic result = await _auth
-                                .registerWithEmailAndPassword(email, password);
-                            if (result == null) {
-                              setState(() {
-                                error = 'Please supply a valid email';
-                                loading = false;
-                              });
-                            }
+                            BlocProvider.of<AuthorizationBloc>(context).add(
+                                RegisterEvent(
+                                    email: email, password: password));
                           }
                         }),
                     SizedBox(height: 12.0),
@@ -117,5 +115,8 @@ class _RegisterState extends State<Register> {
               ),
             ),
           );
+        }
+      },
+    );
   }
 }
