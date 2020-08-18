@@ -1,10 +1,11 @@
-import 'package:Gively/data/models/models.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class IAuthorizationRepository {
-  Future<GivelyUser> signIn(String email, String password);
+  Future<User> signIn(String email, String password);
 
   void forgotPasswordRequest(String email);
 
   void signOut();
 
+  Future<String> signUp(String email, String password);
 }

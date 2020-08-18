@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:Gively/data/interfaces/iauthorization_repository.dart';
-import 'package:Gively/data/models/models.dart';
 import 'package:Gively/data/services/auth_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:validators/validators.dart';
 part 'authorization_event.dart';
 part 'authorization_state.dart';
@@ -27,6 +27,9 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
       case SignInEvent:
         yield* _mapSignInEventToState(event);
         break;
+      case SignUpEvent:
+        yield* _mapSignUpEventToState(event);
+        break;
     }
   }
 
@@ -41,9 +44,15 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
       if (user == null) {
         yield AuthorizationFailState();
       } else {
-        // _secureStorageService.saveUserInfo(user);
-        yield AuthorizationSuccessState(user);
+        if (!user.emailVerified) {
+          yield NotEmailVerifiedState();
+        } else {
+          // _secureStorageService.saveUserInfo(user);
+          yield AuthorizationSuccessState(user);
+        }
       }
     }
   }
+
+  Stream<AuthorizationState> _mapSignUpEventToState(SignInEvent event) async* {}
 }

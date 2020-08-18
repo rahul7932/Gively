@@ -29,12 +29,14 @@ class _SignInState extends State<SignIn> {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => Home()));
       } else if (state is AuthorizationInvalidEmail) {
-        FlushBarError(message: "Email is invalid");
+        flushBarError(context, "Email is invalid");
       } else if (state is AuthorizationInvalidPasswordState) {
-        FlushBarError(message: "You must enter a password");
+        flushBarError(context, "You must enter a password");
       } else if (state is AuthorizationFailState) {
-        FlushBarError(
-            message: "This information does not match our records. Try again.");
+        flushBarError(
+            context,"This information does not match our records. Try again.");
+      } else if (state is NotEmailVerifiedState) {
+        flushBarError(context, "You must verify your email before continuing");
       }
     }, builder: (context, state) {
       if (state is AuthorizationPendingState) {

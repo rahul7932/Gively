@@ -24,3 +24,11 @@ class SignInEvent extends AuthorizationEvent{
   @override
   List<Object> get props => [email, password];
 }
+
+class SignUpEvent extends AuthorizationEvent{
+  SignUpEvent({this.email, this.password});
+  final String email;
+  final String password;
+  @override
+  List<Object> get props => [email, password];
+}

@@ -1,17 +1,26 @@
 import 'package:Gively/data/interfaces/iauthorization_repository.dart';
-import 'package:Gively/data/models/models.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class AuthRepository extends IAuthorizationRepository {
-  Future<GivelyUser> signIn(String email, String password) async {
-    var result = await _auth.signInWithEmailAndPassword(
+  Future<User> signIn(String email, String password) async {
+    UserCredential userCredential = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
-    var user = new GivelyUser(
-     uid: result.user.uid,
-    );
-    return user;
+    return userCredential.user;
+  }
+
+  @override
+  Future<String> signUp(String email, String password) async {
+    UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+    try {
+      await userCredential.user.sendEmailVerification();
+      return userCredential.user.uid;
+    } catch (e) {
+      print("An error occured while trying to send email verification");
+      print(e.message);
+    }
+    return null;
   }
 
   @override

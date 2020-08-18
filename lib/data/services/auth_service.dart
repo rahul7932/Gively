@@ -1,12 +1,12 @@
 import 'package:Gively/data/interfaces/iauthorization_repository.dart';
-import 'package:Gively/data/models/models.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
   final IAuthorizationRepository _authRepository;
 
   AuthService(this._authRepository);
 
-  Future<GivelyUser> signIn(String email, String password) async {
+  Future<User> signIn(String email, String password) async {
     try {
       return await _authRepository.signIn(email, password);
     } catch (error) {
@@ -19,14 +19,14 @@ class AuthService {
     _authRepository.signOut();
   }
 
-/*  Future signUp(SignUpRequestModel signUpRequest) async {
+  Future signUp(String email, String password) async {
     try {
-      _authRepository.signUp(signUpRequest);
+      _authRepository.signUp(email,password);
     } catch (error) {
       print(error.toString());
       return null;
     }
-  }*/
+  }
 
   Future<bool> forgotPasswordRequest(String email) async {
     try {
