@@ -14,7 +14,6 @@ class DrivesRepository extends IDrivesRepository {
     categoriesSnapshot.docs.forEach((drive) {
       drivesList.add(Drive.fromJson(drive.data()));
     });
-    print(drivesList.toString());
     return drivesList;
   }
 }

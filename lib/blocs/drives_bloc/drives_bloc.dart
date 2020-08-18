@@ -31,7 +31,6 @@ class DrivesBloc extends Bloc<DrivesEvent, DrivesState> {
   }
 
   Stream<DrivesState> _mapLoadEventToState(DrivesLoadEvent event)async*{
-    print('made it here');
     List<Drive> drivesList = await _drivesService.fetchDrives();
     yield DrivesLoadSuccess(drivesList: drivesList);
   }

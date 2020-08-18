@@ -8,29 +8,29 @@ class DriveTile extends StatelessWidget {
   DriveTile({this.drive});
 
   backgroundImageMethod() {
-    if ('${drive.school}' == 'Independence High School') {
+    if ('${drive.locationName}' == 'Independence High School') {
       return Image.asset('assets/indylogo.png');
-    } else if ('${drive.school}' == 'Briar Woods High School') {
+    } else if ('${drive.locationName}' == 'Briar Woods High School') {
       return Image.asset(
         'assets/bwhslogo.jpg',
       );
-    } else if ('${drive.school}' == 'Loudoun County High School') {
+    } else if ('${drive.locationName}' == 'Loudoun County High School') {
       return Image.asset(
         'assets/lchslogo.png',
       );
-    } else if ('${drive.school}' == 'John Champe High School') {
+    } else if ('${drive.locationName}' == 'John Champe High School') {
       return Image.asset(
         'assets/jchslogo.png',
       );
-    } else if ('${drive.school}' == 'Freedom High School') {
+    } else if ('${drive.locationName}' == 'Freedom High School') {
       return Image.asset(
         'assets/fhslogo.jpg',
       );
-    } else if ('${drive.school}' == 'Dominion High School') {
+    } else if ('${drive.locationName}' == 'Dominion High School') {
       return Image.asset(
         'assets/dhslogo.png',
       );
-    } else if ('${drive.school}' == 'Park View High School') {
+    } else if ('${drive.locationName}' == 'Park View High School') {
       return Image.asset(
         'assets/pvhslogo.png',
       );
@@ -42,8 +42,8 @@ class DriveTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double donationRatio =
-        (int.parse(drive.currentDonations) / int.parse(drive.maxDonations));
-    String url = drive.form;
+       drive.currentDonations/ drive.maxDonations;
+    String url = drive.formLink;
     return Padding(
         padding: EdgeInsets.only(top: 8.0),
         child: Card(
@@ -61,7 +61,7 @@ class DriveTile extends StatelessWidget {
                 ),
                 title: Text(drive.club,
                     style: TextStyle(fontWeight: FontWeight.bold)),
-                subtitle: Text('${drive.description}'),
+                subtitle: Text('${drive.descriptionShort}'),
                 onTap: () {
                   showModalBottomSheet(
                       context: context,
@@ -83,25 +83,25 @@ class DriveTile extends StatelessWidget {
                                 style: TextStyle(
                                     fontSize: 20.0, color: Colors.white)),
                             SizedBox(height: 15),
-                            Text('School:' + ' ${drive.school}',
+                            Text('School:' + ' ${drive.locationName}',
                                 style: TextStyle(
                                   fontSize: 20.0,
                                   color: Colors.white,
                                 )),
                             SizedBox(height: 15),
-                            Text('Contact:' + ' ${drive.contact}',
+                            Text('Contact:' + ' ${drive.contactEmail}',
                                 style: TextStyle(
                                   fontSize: 20.0,
                                   color: Colors.white,
                                 )),
                             SizedBox(height: 15),
-                            Text('Dates Active:' + ' ${drive.date}',
+                            Text('Dates Active:' + ' ${drive.startDate}',
                                 style: TextStyle(
                                   fontSize: 20.0,
                                   color: Colors.white,
                                 )),
                             SizedBox(height: 15),
-                            Text('Description:' + ' ${drive.detailDescription}',
+                            Text('Description:' + ' ${drive.descriptionLong}',
                                 style: TextStyle(
                                   fontSize: 20.0,
                                   color: Colors.white,

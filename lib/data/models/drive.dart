@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Drive {
   final String address;
   final String locationName;
@@ -5,8 +7,8 @@ class Drive {
   final String contactEmail;
   final String descriptionShort;
   final String descriptionLong;
-  final DateTime startDate;
-  final DateTime endDate;
+  final Timestamp startDate;
+  final Timestamp endDate;
   final num maxDonations;
   final num currentDonations;
   final String formLink;
