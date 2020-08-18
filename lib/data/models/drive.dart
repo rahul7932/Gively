@@ -1,51 +1,55 @@
 class Drive {
   final String address;
-  final String school;
+  final String locationName;
   final String club;
-  final String contact;
-  final String description;
-  final String detailDescription;
-  final String date;
-  final String maxDonations;
-  final String currentDonations;
-  final String form;
+  final String contactEmail;
+  final String descriptionShort;
+  final String descriptionLong;
+  final DateTime startDate;
+  final DateTime endDate;
+  final num maxDonations;
+  final num currentDonations;
+  final String formLink;
 
   Drive(
       {this.address,
-      this.school,
+      this.locationName,
       this.club,
-      this.contact,
-      this.description,
-      this.detailDescription,
-      this.date,
+      this.contactEmail,
+      this.descriptionShort,
+      this.descriptionLong,
+      this.startDate,
+      this.endDate,
       this.currentDonations,
       this.maxDonations,
-      this.form});
+      this.formLink});
 
   Drive.fromJson(Map<String, dynamic> json)
       : address = json['address'],
-        school = json['school'],
-        club = json['club'],
-        contact = json['contact'],
-        description = json['description'],
-        detailDescription = json['detailDescription'],
-        date = json['date'],
+        locationName = json['locationName'],
+        club = json['clubName'],
+        contactEmail= json['contactEmail'],
+        descriptionShort = json['descriptionShort'],
+        descriptionLong = json['descriptionLong'],
+        startDate = json['startDate'],
+        endDate = json['endDate'],
         maxDonations = json['maxDonations'],
         currentDonations = json['currentDonations'],
-        form = json['form'];
+        formLink = json['formLink'];
 
   Map<String, dynamic> toJson() =>
       {
         'address': address,
-        'school': school,
+        'locationName': locationName,
         'club': club,
-        'contact': contact,
-        'description': description,
-        'detailDescription': detailDescription,
-        'date': date,
+        'contactEmail': contactEmail,
+        'descriptionShort': descriptionShort,
+        'descriptionLong': descriptionLong,
+        'startDate': startDate,
+        'endDate': endDate,
         'maxDonations': maxDonations,
         'currentDonations': currentDonations,
-        'form': form,
+        'formLink': formLink,
       };
 }
 
