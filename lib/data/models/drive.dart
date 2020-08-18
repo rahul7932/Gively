@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:equatable/equatable.dart';
 
-class Drive {
+class Drive extends Equatable {
   final String address;
   final String locationName;
-  final String club;
+  final String clubName;
   final String contactEmail;
   final String descriptionShort;
   final String descriptionLong;
@@ -16,7 +17,7 @@ class Drive {
   Drive(
       {this.address,
       this.locationName,
-      this.club,
+      this.clubName,
       this.contactEmail,
       this.descriptionShort,
       this.descriptionLong,
@@ -29,8 +30,8 @@ class Drive {
   Drive.fromJson(Map<String, dynamic> json)
       : address = json['address'],
         locationName = json['locationName'],
-        club = json['clubName'],
-        contactEmail= json['contactEmail'],
+        clubName = json['clubName'],
+        contactEmail = json['contactEmail'],
         descriptionShort = json['descriptionShort'],
         descriptionLong = json['descriptionLong'],
         startDate = json['startDate'],
@@ -39,11 +40,10 @@ class Drive {
         currentDonations = json['currentDonations'],
         formLink = json['formLink'];
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         'address': address,
         'locationName': locationName,
-        'club': club,
+        'clubName': clubName,
         'contactEmail': contactEmail,
         'descriptionShort': descriptionShort,
         'descriptionLong': descriptionLong,
@@ -53,6 +53,20 @@ class Drive {
         'currentDonations': currentDonations,
         'formLink': formLink,
       };
+
+  @override
+  List<Object> get props => [
+        address,
+        locationName,
+        clubName,
+        contactEmail,
+        descriptionShort,
+        descriptionLong,
+        startDate,
+        endDate,
+        currentDonations,
+        maxDonations,
+        formLink
+      ];
+
 }
-
-

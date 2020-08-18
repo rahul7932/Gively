@@ -13,7 +13,7 @@ class DrivesLoadSuccess extends DrivesState {
   DrivesLoadSuccess({this.drivesList});
   final List<Drive> drivesList;
   @override
-  List<Object> get props => [];
+  List<Object> get props => [drivesList];
 }
 
 class DrivesLoadFail extends DrivesState {

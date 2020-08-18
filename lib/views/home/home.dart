@@ -52,7 +52,10 @@ class Home extends StatelessWidget {
           BlocProvider<DrivesBloc>(
             create: (context) => DrivesBloc(DrivesRepository())..add(DrivesLoadEvent()),
           ),
-        ], child: DriveList()),
+        ], child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: DriveList(),
+        )),
       );
     });
   }

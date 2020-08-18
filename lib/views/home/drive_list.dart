@@ -11,23 +11,45 @@ class DriveList extends StatefulWidget {
 
 class _DriveListState extends State<DriveList> {
   ScrollController _scrollController = new ScrollController();
+  TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<DrivesBloc, DrivesState>(listener:(context, state){
-    },builder: (context, state) {
-      if (state is DrivesLoadSuccess) {
-        return ListView.builder(
-            shrinkWrap: true,
-            controller: _scrollController,
-            itemCount: state.drivesList.length,
-            itemBuilder: (context, index) {
-              return DriveTile(drive: state.drivesList[index]);
-            });
-      } else {
-        return Loading();
-      }
-    });
+    return BlocConsumer<DrivesBloc, DrivesState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          if (state is DrivesLoadSuccess) {
+            return Container(
+              child: Column(children: [
+                TextField(
+                  onChanged: (value) {
+                    BlocProvider.of<DrivesBloc>(context)
+                        .add(DrivesListFilterEvent(searchValue: value));
+                  },
+                  controller: _searchController,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                      hintText: "Search",
+                      prefixIcon: Icon(Icons.search),
+                      border: OutlineInputBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0)))),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      controller: _scrollController,
+                      itemCount: state.drivesList.length,
+                      itemBuilder: (context, index) {
+                        return DriveTile(drive: state.drivesList[index]);
+                      }),
+                ),
+              ]),
+            );
+          } else {
+            return Loading();
+          }
+        });
   }
 }
 

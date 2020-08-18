@@ -11,8 +11,8 @@ part 'drives_state.dart';
 
 class DrivesBloc extends Bloc<DrivesEvent, DrivesState> {
   DrivesService _drivesService;
-
-  DrivesBloc(IDrivesRepository _drivesRepository) : super(DrivesLoading()){
+  List<Drive> drivesList = List<Drive>();
+  DrivesBloc(IDrivesRepository _drivesRepository) : super(DrivesLoading()) {
     _drivesService = DrivesService(_drivesRepository);
   }
 
@@ -20,9 +20,12 @@ class DrivesBloc extends Bloc<DrivesEvent, DrivesState> {
   Stream<DrivesState> mapEventToState(
     DrivesEvent event,
   ) async* {
-    switch (event.runtimeType){
+    switch (event.runtimeType) {
       case DrivesLoadEvent:
         yield* _mapLoadEventToState(event);
+        break;
+      case DrivesListFilterEvent:
+        yield* _mapFilterEventToState(event);
         break;
       default:
         yield DrivesLoading();
@@ -30,9 +33,23 @@ class DrivesBloc extends Bloc<DrivesEvent, DrivesState> {
     }
   }
 
-  Stream<DrivesState> _mapLoadEventToState(DrivesLoadEvent event)async*{
-    List<Drive> drivesList = await _drivesService.fetchDrives();
+  Stream<DrivesState> _mapLoadEventToState(DrivesLoadEvent event) async* {
+    drivesList = await _drivesService.fetchDrives();
     yield DrivesLoadSuccess(drivesList: drivesList);
   }
 
+  Stream<DrivesState> _mapFilterEventToState(
+      DrivesListFilterEvent event) async* {
+    List<Drive> filteredDrivesList = List<Drive>();
+    if(event.searchValue == ""){
+      filteredDrivesList = List.from(drivesList);
+    }
+    else {
+      drivesList.forEach((drive) {
+        if (drive.clubName.toLowerCase().contains(event.searchValue.toLowerCase()))
+          filteredDrivesList.add(drive);
+      });
+    }
+    yield DrivesLoadSuccess(drivesList: filteredDrivesList);
+  }
 }

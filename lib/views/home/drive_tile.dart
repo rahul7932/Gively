@@ -48,7 +48,6 @@ class DriveTile extends StatelessWidget {
         padding: EdgeInsets.only(top: 8.0),
         child: Card(
             color: Colors.grey[200],
-            margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
             child: ListTile(
                 isThreeLine: true,
                 leading: CircleAvatar(
@@ -59,7 +58,7 @@ class DriveTile extends StatelessWidget {
                     child: backgroundImageMethod(),
                   ),
                 ),
-                title: Text(drive.club,
+                title: Text(drive.clubName,
                     style: TextStyle(fontWeight: FontWeight.bold)),
                 subtitle: Text('${drive.descriptionShort}'),
                 onTap: () {
