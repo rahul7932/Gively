@@ -17,3 +17,10 @@ Widget flushBarError (BuildContext context, String errorMessage) {
       message: errorMessage,
       backgroundColor: Colors.red);
 }
+
+Widget flushBarSuccess (BuildContext context, String errorMessage) {
+  return showFlushBar(
+      context: context,
+      message: errorMessage,
+      backgroundColor: Colors.green);
+}

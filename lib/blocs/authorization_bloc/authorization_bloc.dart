@@ -21,6 +21,9 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
     AuthorizationEvent event,
   ) async* {
     switch (event.runtimeType) {
+      case CheckStoredAuthDataEvent:
+        yield* _mapCheckStoredAuthDataToState(event);
+        break;
       case SignOutEvent:
         _authService.signOut();
         break;
@@ -55,6 +58,13 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
   }
 
   Stream<AuthorizationState> _mapSignUpEventToState(SignUpEvent event) async* {
-    var userID = await _authService.signUp(event.email, event.password);
+    await _authService.signUp(event.email, event.password);
+    yield VerificationEmailSentState();
+  }
+
+  Stream<AuthorizationState> _mapCheckStoredAuthDataToState(
+      CheckStoredAuthDataEvent event) async* {
+    User user = await _authService.checkForExistingSignIn();
+    if (user != null) yield AuthorizationSuccessState(user);
   }
 }

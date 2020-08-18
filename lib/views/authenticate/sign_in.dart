@@ -1,6 +1,6 @@
 import 'package:Gively/blocs/authorization_bloc/authorization_bloc.dart';
 import 'package:Gively/views/home/home.dart';
-import 'package:Gively/views/widgets/shared/flushbar_error.dart';
+import 'package:Gively/views/widgets/shared/flushbar_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:Gively/utils/constants.dart';
 import 'package:Gively/views/widgets/shared/loading.dart';

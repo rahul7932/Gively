@@ -20,6 +20,7 @@ class _DriveListState extends State<DriveList> {
         builder: (context, state) {
           if (state is DrivesLoadSuccess) {
             return Container(
+              padding: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
               child: Column(children: [
                 TextField(
                   onChanged: (value) {

@@ -28,17 +28,17 @@ class Drive extends Equatable {
       this.formLink});
 
   Drive.fromJson(Map<String, dynamic> json)
-      : address = json['address'],
-        locationName = json['locationName'],
-        clubName = json['clubName'],
-        contactEmail = json['contactEmail'],
-        descriptionShort = json['descriptionShort'],
-        descriptionLong = json['descriptionLong'],
-        startDate = json['startDate'],
-        endDate = json['endDate'],
-        maxDonations = json['maxDonations'],
-        currentDonations = json['currentDonations'],
-        formLink = json['formLink'];
+      : address = json['address'] ?? '',
+        locationName = json['locationName'] ?? '',
+        clubName = json['clubName'] ?? '',
+        contactEmail = json['contactEmail'] ?? '',
+        descriptionShort = json['descriptionShort']?? '',
+        descriptionLong = json['descriptionLong']?? '',
+        startDate = json['startDate']?? Timestamp.now(),
+        endDate = json['endDate'] ?? Timestamp.now(),
+        maxDonations = json['maxDonations'] ?? 0,
+        currentDonations = json['currentDonations']?? 0,
+        formLink = json['formLink'] ?? '';
 
   Map<String, dynamic> toJson() => {
         'address': address,

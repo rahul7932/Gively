@@ -1,4 +1,6 @@
 import 'package:Gively/blocs/authorization_bloc/authorization_bloc.dart';
+import 'package:Gively/views/authenticate/sign_in.dart';
+import 'package:Gively/views/widgets/shared/flushbar_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:Gively/utils/constants.dart';
 import 'package:Gively/views/widgets/shared/loading.dart';
@@ -23,7 +25,14 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthorizationBloc, AuthorizationState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is VerificationEmailSentState) {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => SignIn()));
+          flushBarSuccess(
+              context, 'A verification email has been sent to your address.');
+        }
+      },
       builder: (context, state) {
         if (state is AuthorizationPendingState) {
           return Loading();
@@ -92,8 +101,7 @@ class _RegisterState extends State<Register> {
                         onPressed: () async {
                           if (_formKey.currentState.validate()) {
                             BlocProvider.of<AuthorizationBloc>(context).add(
-                                SignUpEvent(
-                                    email: email, password: password));
+                                SignUpEvent(email: email, password: password));
                           }
                         }),
                     SizedBox(height: 12.0),

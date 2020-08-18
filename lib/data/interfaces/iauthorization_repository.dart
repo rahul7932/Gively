@@ -8,4 +8,7 @@ abstract class IAuthorizationRepository {
   void signOut();
 
   Future<String> signUp(String email, String password);
+  Future<String> checkForSecurePassword();
+  Future<String> checkForSecureUsername();
+  void saveSecureData(String email, String password);
 }

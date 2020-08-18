@@ -8,11 +8,21 @@ class AuthService {
 
   Future<User> signIn(String email, String password) async {
     try {
-      return await _authRepository.signIn(email, password);
+      User user =  await _authRepository.signIn(email, password);
+      if(user != null){
+        _authRepository.saveSecureData(email, password);
+      }
+      return user;
     } catch (error) {
       print(error);
     }
     return null;
+  }
+
+  Future<User> checkForExistingSignIn()async{
+    String password = await _authRepository.checkForSecurePassword();
+    String userName = await _authRepository.checkForSecureUsername();
+    return await signIn(userName, password);
   }
 
   void signOut(){

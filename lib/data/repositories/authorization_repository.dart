@@ -1,18 +1,41 @@
 import 'package:Gively/data/interfaces/iauthorization_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
+final _secureStorage = FlutterSecureStorage();
 
 class AuthRepository extends IAuthorizationRepository {
   Future<User> signIn(String email, String password) async {
-    UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-        email: email, password: password);
-    return userCredential.user;
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      return userCredential.user;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  @override
+  void saveSecureData(String email, String password){
+    _secureStorage.write(key: 'gively_pass', value: password);
+    _secureStorage.write(key: 'gively_username', value: email);
+  }
+
+  @override
+  Future<String> checkForSecurePassword() async {
+    return await _secureStorage.read(key: 'gively_pass');
+  }
+
+  @override
+  Future<String> checkForSecureUsername() async {
+    return await _secureStorage.read(key: 'gively_username');
   }
 
   @override
   Future<String> signUp(String email, String password) async {
-    UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+    UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+        email: email, password: password);
     try {
       await userCredential.user.sendEmailVerification();
       return userCredential.user.uid;
@@ -30,6 +53,6 @@ class AuthRepository extends IAuthorizationRepository {
 
   @override
   void signOut() {
-     _auth.signOut();
+    _auth.signOut();
   }
 }

@@ -39,6 +39,7 @@ dependencies:
   equatable: ^1.2.3
   validators: ^2.0.0
   flushbar: ^1.10.4
+  flutter_secure_storage: ^3.3.3
 
 dev_dependencies:
   flutter_test:

@@ -41,8 +41,7 @@ class DriveTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double donationRatio =
-       drive.currentDonations/ drive.maxDonations;
+    double donationRatio = drive.currentDonations / drive.maxDonations;
     String url = drive.formLink;
     return Padding(
         padding: EdgeInsets.only(top: 8.0),
@@ -52,7 +51,7 @@ class DriveTile extends StatelessWidget {
                 isThreeLine: true,
                 leading: CircleAvatar(
                   radius: 35.0,
-                  backgroundColor: Colors.grey[200],
+                  backgroundColor: Colors.transparent,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15),
                     child: backgroundImageMethod(),
@@ -70,75 +69,78 @@ class DriveTile extends StatelessWidget {
                           padding: EdgeInsets.symmetric(
                               vertical: 20.0, horizontal: 50.0),
                           color: kPrimaryColor,
-                          child: Column(children: [
-                            // FlatButton.icon(
-                            //     icon: Icon(Icons.check, color: Colors.green),
-                            //     label: Text('Sign Up To Donate',
-                            //         style: TextStyle(fontSize: 15.0)),
-                            //     onPressed: () {}),
-
-                            SizedBox(height: 25),
-                            Text('Address:' + ' ${drive.address}',
-                                style: TextStyle(
-                                    fontSize: 20.0, color: Colors.white)),
-                            SizedBox(height: 15),
-                            Text('School:' + ' ${drive.locationName}',
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  color: Colors.white,
-                                )),
-                            SizedBox(height: 15),
-                            Text('Contact:' + ' ${drive.contactEmail}',
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  color: Colors.white,
-                                )),
-                            SizedBox(height: 15),
-                            Text('Dates Active:' + ' ${drive.startDate}',
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  color: Colors.white,
-                                )),
-                            SizedBox(height: 15),
-                            Text('Description:' + ' ${drive.descriptionLong}',
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  color: Colors.white,
-                                )),
-                            SizedBox(height: 20),
-                            LinearProgressIndicator(
-                              valueColor: new AlwaysStoppedAnimation<Color>(
-                                  Colors.white),
-                              backgroundColor: Colors.grey,
-                              value: donationRatio,
-                            ),
-                            SizedBox(height: 15),
-                            Text(
-                                '${drive.currentDonations}' +
-                                    '/' +
-                                    '${drive.maxDonations}' +
-                                    ' donated.',
-                                style: TextStyle(
-                                  fontSize: 16.0,
-                                  color: Colors.white,
-                                )),
-                            SizedBox(height: 20),
-                            RaisedButton(
-                                color: Colors.grey[200],
-                                child: Text('Sign Up to Donate',
-                                    style: TextStyle(
-                                      color: kPrimaryColor,
-                                      fontSize: 16.0,
-                                    )),
-                                onPressed: () async {
-                                  if (await canLaunch(url)) {
-                                    await launch(url);
-                                  } else {
-                                    throw 'Could not launch $url';
-                                  }
-                                }),
-                            SizedBox(height: 25),
-                          ]),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(height: 25),
+                                    Text('Address:' + ' ${drive.address}',
+                                        style: TextStyle(
+                                            fontSize: 20.0, color: Colors.white)),
+                                    SizedBox(height: 15),
+                                    Text('School:' + ' ${drive.locationName}',
+                                        style: TextStyle(
+                                          fontSize: 20.0,
+                                          color: Colors.white,
+                                        )),
+                                    SizedBox(height: 15),
+                                    Text('Contact:' + ' ${drive.contactEmail}',
+                                        style: TextStyle(
+                                          fontSize: 20.0,
+                                          color: Colors.white,
+                                        )),
+                                    SizedBox(height: 15),
+                                    Text('Dates Active:' + ' ${drive.startDate}',
+                                        style: TextStyle(
+                                          fontSize: 20.0,
+                                          color: Colors.white,
+                                        )),
+                                    SizedBox(height: 15),
+                                    Text(
+                                        'Description:' +
+                                            ' ${drive.descriptionLong}',
+                                        style: TextStyle(
+                                          fontSize: 20.0,
+                                          color: Colors.white,
+                                        )),
+                                  ]),
+                              SizedBox(height: 20),
+                              LinearProgressIndicator(
+                                valueColor: new AlwaysStoppedAnimation<Color>(
+                                    Colors.white),
+                                backgroundColor: Colors.grey,
+                                value: donationRatio,
+                              ),
+                              SizedBox(height: 15),
+                              Text(
+                                  '${drive.currentDonations}' +
+                                      '/' +
+                                      '${drive.maxDonations}' +
+                                      ' donated.',
+                                  style: TextStyle(
+                                    fontSize: 16.0,
+                                    color: Colors.white,
+                                  )),
+                              SizedBox(height: 20),
+                              RaisedButton(
+                                  color: Colors.grey[200],
+                                  child: Text('Sign Up to Donate',
+                                      style: TextStyle(
+                                        color: kPrimaryColor,
+                                        fontSize: 16.0,
+                                      )),
+                                  onPressed: () async {
+                                    if (await canLaunch(url)) {
+                                      await launch(url);
+                                    } else {
+                                      throw 'Could not launch $url';
+                                    }
+                                  }),
+                              SizedBox(height: 25),
+                            ],
+                          ),
                         ));
                       });
                 })));

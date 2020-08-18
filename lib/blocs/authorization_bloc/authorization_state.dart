@@ -40,4 +40,8 @@ class AuthorizationPendingState extends AuthorizationState {
   List<Object> get props => [];
 }
 
+class VerificationEmailSentState extends AuthorizationState {
+  @override
+  List<Object> get props => [];
+}
 
