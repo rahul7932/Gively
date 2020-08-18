@@ -13,7 +13,7 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: AppBar(
             title: Text('Gively'),
-            backgroundColor: Color.fromRGBO(163, 198, 100, 1),
+            backgroundColor: kPrimaryColor,
             leading: Row(children: [
               IconButton(
                   icon: Icon(Icons.info, color: Colors.white),

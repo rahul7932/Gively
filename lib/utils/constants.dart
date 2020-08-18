@@ -10,3 +10,5 @@ const textInputDecoration = InputDecoration(
                     borderSide: BorderSide(color: Colors.lightGreen, width: 2.0),
                   ),
                 );
+
+const Color kPrimaryColor =  Color.fromRGBO(163, 198, 100, 1);

@@ -8,7 +8,7 @@
 //     return Scaffold(
 //         backgroundColor: Colors.grey[200],
 //         appBar: AppBar(
-//           backgroundColor: Color.fromRGBO(163, 198, 100, 1),
+//           backgroundColor: kPrimaryColor,
 //           title: Text('Donation Confirmed'),
 //           leading: IconButton(
 //             icon: Icon(Icons.arrow_back, color: Colors.white),
@@ -26,13 +26,13 @@
 //               Text('Your donation has been confirmed!',
 //                   style: TextStyle(
 //                       fontSize: 25.0,
-//                       color: Color.fromRGBO(163, 198, 100, 1),
+//                       color: kPrimaryColor,
 //                       fontWeight: FontWeight.bold)),
 //               SizedBox(height: 15),
 //               Text(
 //                   'Please write your email on a small piece of paper or index card and attach it to your donation. This will be used to give you credit for your donation. All information will be kept private.',
 //                   style: TextStyle(
-//                       fontSize: 20.0, color: Color.fromRGBO(163, 198, 100, 1))),
+//                       fontSize: 20.0, color: kPrimaryColor)),
 //             ]))));
 //   }
 // }

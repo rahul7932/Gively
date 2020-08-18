@@ -32,7 +32,7 @@ class _RegisterState extends State<Register> {
             resizeToAvoidBottomInset: false,
             backgroundColor: Colors.white, //grey[200],
             appBar: AppBar(
-              backgroundColor: Color.fromRGBO(163, 198, 100, 1),
+              backgroundColor: kPrimaryColor,
               elevation: 0.0,
               title: Text('Register for Gively'),
               actions: <Widget>[
@@ -84,7 +84,7 @@ class _RegisterState extends State<Register> {
                         }),
                     SizedBox(height: 20.0),
                     RaisedButton(
-                        color: Color.fromRGBO(163, 198, 100, 1), //green[400]
+                        color: kPrimaryColor, //green[400]
                         child: Text(
                           'Register',
                           style: TextStyle(color: Colors.white),

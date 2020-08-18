@@ -69,7 +69,7 @@ class DriveTile extends StatelessWidget {
                             child: Container(
                           padding: EdgeInsets.symmetric(
                               vertical: 20.0, horizontal: 50.0),
-                          color: Color.fromRGBO(163, 198, 100, 1),
+                          color: kPrimaryColor,
                           child: Column(children: [
                             // FlatButton.icon(
                             //     icon: Icon(Icons.check, color: Colors.green),
@@ -127,7 +127,7 @@ class DriveTile extends StatelessWidget {
                                 color: Colors.grey[200],
                                 child: Text('Sign Up to Donate',
                                     style: TextStyle(
-                                      color: Color.fromRGBO(163, 198, 100, 1),
+                                      color: kPrimaryColor,
                                       fontSize: 16.0,
                                     )),
                                 onPressed: () async {

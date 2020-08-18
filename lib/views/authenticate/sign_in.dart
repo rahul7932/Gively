@@ -1,5 +1,6 @@
 import 'package:Gively/blocs/authorization_bloc/authorization_bloc.dart';
 import 'package:Gively/views/home/home.dart';
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:Gively/utils/constants.dart';
 import 'package:Gively/views/widgets/shared/loading.dart';
@@ -27,6 +28,23 @@ class _SignInState extends State<SignIn> {
       if (state is AuthorizationSuccessState) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => Home()));
+      } else if (state is AuthorizationInvalidEmail) {
+        Flushbar(
+          message: "Invalid email address",
+          duration: Duration(seconds: 3),
+        )..show(context);
+      }
+      else if (state is AuthorizationInvalidPasswordState) {
+        Flushbar(
+          message: "You must enter a password",
+          duration: Duration(seconds: 3),
+        )..show(context);
+      }
+      else if (state is AuthorizationFailState) {
+        Flushbar(
+          message: "This information does not match our records. Try again.",
+          duration: Duration(seconds: 3),
+        )..show(context);
       }
     }, builder: (context, state) {
       if (state is AuthorizationPendingState) {
@@ -36,8 +54,7 @@ class _SignInState extends State<SignIn> {
           resizeToAvoidBottomPadding: false,
           backgroundColor: Colors.white, //grey[200]
           appBar: AppBar(
-            backgroundColor: Color.fromRGBO(163, 198, 100, 1),
-            elevation: 0.0,
+            backgroundColor:kPrimaryColor,
             title: Text('Sign in to Gively'),
             actions: <Widget>[
               FlatButton.icon(
@@ -82,7 +99,7 @@ class _SignInState extends State<SignIn> {
                         }),
                     SizedBox(height: 20.0),
                     RaisedButton(
-                        color: Color.fromRGBO(163, 198, 100, 1),
+                        color: kPrimaryColor,
                         child: Text(
                           'Sign In',
                           style: TextStyle(color: Colors.white),

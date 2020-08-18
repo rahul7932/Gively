@@ -37,17 +37,17 @@ class _DriveListState extends State<DriveList> {
 
 // child: new Theme(
 //     data:
-//         new ThemeData(primaryColor: Color.fromRGBO(163, 198, 100, 1)),
+//         new ThemeData(primaryColor: kPrimaryColor),
 //     // child: TextField(
 //     //     decoration: InputDecoration(
 //     //         // labelText: 'Search By Institution',
 //     //         border: new OutlineInputBorder(
 //     //             borderSide: new BorderSide(
-//     //           color: Color.fromRGBO(163, 198, 100, 1),
+//     //           color: kPrimaryColor,
 //     //         )),
 //     //         hintText: 'Search By School',
 //     //         prefixIcon: const Icon(
 //     //           Icons.school,
-//     //           color: Color.fromRGBO(163, 198, 100, 1),
+//     //           color: kPrimaryColor,
 //     //         )))
 //     )
