@@ -92,7 +92,7 @@ class _RegisterState extends State<Register> {
                         onPressed: () async {
                           if (_formKey.currentState.validate()) {
                             BlocProvider.of<AuthorizationBloc>(context).add(
-                                RegisterEvent(
+                                SignUpEvent(
                                     email: email, password: password));
                           }
                         }),

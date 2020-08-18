@@ -54,5 +54,7 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
     }
   }
 
-  Stream<AuthorizationState> _mapSignUpEventToState(SignInEvent event) async* {}
+  Stream<AuthorizationState> _mapSignUpEventToState(SignUpEvent event) async* {
+    var userID = await _authService.signUp(event.email, event.password);
+  }
 }

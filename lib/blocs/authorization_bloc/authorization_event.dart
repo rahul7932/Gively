@@ -9,14 +9,6 @@ class SignOutEvent extends AuthorizationEvent{
   List<Object> get props => [];
 }
 
-class RegisterEvent extends AuthorizationEvent{
-  RegisterEvent({this.email, this.password});
-  final String email;
-  final String password;
-  @override
-  List<Object> get props => [email, password];
-}
-
 class SignInEvent extends AuthorizationEvent{
   SignInEvent({this.email, this.password});
   final String email;
