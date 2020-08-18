@@ -1,6 +1,6 @@
 import 'package:Gively/blocs/authorization_bloc/authorization_bloc.dart';
 import 'package:Gively/views/home/home.dart';
-import 'package:flushbar/flushbar.dart';
+import 'package:Gively/views/widgets/shared/flushbar_error.dart';
 import 'package:flutter/material.dart';
 import 'package:Gively/utils/constants.dart';
 import 'package:Gively/views/widgets/shared/loading.dart';
@@ -29,22 +29,12 @@ class _SignInState extends State<SignIn> {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => Home()));
       } else if (state is AuthorizationInvalidEmail) {
-        Flushbar(
-          message: "Invalid email address",
-          duration: Duration(seconds: 3),
-        )..show(context);
-      }
-      else if (state is AuthorizationInvalidPasswordState) {
-        Flushbar(
-          message: "You must enter a password",
-          duration: Duration(seconds: 3),
-        )..show(context);
-      }
-      else if (state is AuthorizationFailState) {
-        Flushbar(
-          message: "This information does not match our records. Try again.",
-          duration: Duration(seconds: 3),
-        )..show(context);
+        FlushBarError(message: "Email is invalid");
+      } else if (state is AuthorizationInvalidPasswordState) {
+        FlushBarError(message: "You must enter a password");
+      } else if (state is AuthorizationFailState) {
+        FlushBarError(
+            message: "This information does not match our records. Try again.");
       }
     }, builder: (context, state) {
       if (state is AuthorizationPendingState) {
@@ -52,9 +42,9 @@ class _SignInState extends State<SignIn> {
       } else {
         return Scaffold(
           resizeToAvoidBottomPadding: false,
-          backgroundColor: Colors.white, //grey[200]
+          backgroundColor: Colors.white,
           appBar: AppBar(
-            backgroundColor:kPrimaryColor,
+            backgroundColor: kPrimaryColor,
             title: Text('Sign in to Gively'),
             actions: <Widget>[
               FlatButton.icon(
