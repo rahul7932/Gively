@@ -1,3 +1,4 @@
+/*
 import 'package:Gively/data/models/models.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -38,3 +39,4 @@ class DatabaseService {
     return donationDrives.snapshots().map(_driveListFromSnapshot);
   }
 }
+*/

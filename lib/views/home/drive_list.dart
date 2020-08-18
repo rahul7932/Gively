@@ -1,7 +1,8 @@
+import 'package:Gively/blocs/drives_bloc/drives_bloc.dart';
 import 'package:Gively/data/models/models.dart';
 import 'package:Gively/views/home/drive_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DriveList extends StatefulWidget {
   @override
@@ -13,8 +14,6 @@ class _DriveListState extends State<DriveList> {
 
   @override
   Widget build(BuildContext context) {
-    //final drives = Provider.of<List<Drive>>(context);
-
     Drive drive = Drive(
         school: 'Loudoun County High School',
         address: 'TestAddress',
@@ -23,15 +22,22 @@ class _DriveListState extends State<DriveList> {
         detailDescription: 'detail',
         currentDonations: '50',
         maxDonations: '100',
-    club: 'club');
+        club: 'club');
     List<Drive> drives = [drive];
-    return ListView.builder(
-        shrinkWrap: true,
-        controller: _scrollController,
-        itemCount: drives.length,
-        itemBuilder: (context, index) {
-          return DriveTile(drive: drives[index]);
-        });
+    return BlocConsumer<DrivesBloc, DrivesState>(listener:(context, state){
+    },builder: (context, state) {
+      if (state is DrivesLoadSuccess) {
+        return ListView.builder(
+            shrinkWrap: true,
+            controller: _scrollController,
+            itemCount: state.drivesList.length,
+            itemBuilder: (context, index) {
+              return DriveTile(drive: state.drivesList[index]);
+            });
+      } else {
+        return Center(child: Text(state.toString()));
+      }
+    });
   }
 }
 

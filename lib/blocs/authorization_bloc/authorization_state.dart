@@ -11,7 +11,7 @@ class AuthorizationInitial extends AuthorizationState {
 
 class AuthorizationSuccessState extends AuthorizationState {
   AuthorizationSuccessState(this.user);
-  final User user;
+  final GivelyUser user;
   @override
   List<Object> get props => [user];
 }

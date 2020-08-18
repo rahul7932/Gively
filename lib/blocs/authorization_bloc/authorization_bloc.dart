@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:Gively/data/interfaces/iauthorization_repository.dart';
 import 'package:Gively/data/models/models.dart';
-import 'package:Gively/services/auth.dart';
+import 'package:Gively/data/services/auth_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:validators/validators.dart';

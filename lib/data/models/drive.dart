@@ -21,4 +21,32 @@ class Drive {
       this.currentDonations,
       this.maxDonations,
       this.form});
+
+  Drive.fromJson(Map<String, dynamic> json)
+      : address = json['address'],
+        school = json['school'],
+        club = json['club'],
+        contact = json['contact'],
+        description = json['description'],
+        detailDescription = json['detailDescription'],
+        date = json['date'],
+        maxDonations = json['maxDonations'],
+        currentDonations = json['currentDonations'],
+        form = json['form'];
+
+  Map<String, dynamic> toJson() =>
+      {
+        'address': address,
+        'school': school,
+        'club': club,
+        'contact': contact,
+        'description': description,
+        'detailDescription': detailDescription,
+        'date': date,
+        'maxDonations': maxDonations,
+        'currentDonations': currentDonations,
+        'form': form,
+      };
 }
+
+

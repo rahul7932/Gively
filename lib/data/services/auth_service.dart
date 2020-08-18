@@ -6,7 +6,7 @@ class AuthService {
 
   AuthService(this._authRepository);
 
-  Future<User> signIn(String email, String password) async {
+  Future<GivelyUser> signIn(String email, String password) async {
     try {
       return await _authRepository.signIn(email, password);
     } catch (error) {

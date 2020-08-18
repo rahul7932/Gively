@@ -1,16 +1,14 @@
 import 'package:Gively/data/interfaces/iauthorization_repository.dart';
 import 'package:Gively/data/models/models.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
-final _firestore = Firestore.instance;
 
 class AuthRepository extends IAuthorizationRepository {
-  Future<User> signIn(String email, String password) async {
+  Future<GivelyUser> signIn(String email, String password) async {
     var result = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
-    var user = new User(
+    var user = new GivelyUser(
      uid: result.user.uid,
     );
     return user;

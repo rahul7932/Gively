@@ -1,3 +1,4 @@
+import 'package:Gively/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class InformationPage extends StatelessWidget {

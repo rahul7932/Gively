@@ -1,4 +1,8 @@
 import 'package:Gively/blocs/authorization_bloc/authorization_bloc.dart';
+import 'package:Gively/blocs/drives_bloc/drives_bloc.dart';
+import 'package:Gively/data/repositories/drives_repository.dart';
+import 'package:Gively/utils/constants.dart';
+import 'package:Gively/views/authenticate/sign_in.dart';
 import 'package:Gively/views/home/drive_list.dart';
 import 'package:Gively/views/home/information.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +13,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthorizationBloc, AuthorizationState>(
         builder: (context, state) {
-          return Scaffold(
+      return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
             title: Text('Gively'),
@@ -37,11 +41,18 @@ class Home extends StatelessWidget {
                 ),
                 label: Text('logout', style: TextStyle(color: Colors.white)),
                 onPressed: () async {
-                  BlocProvider.of<AuthorizationBloc>(context).add(SignOutEvent());
+                  BlocProvider.of<AuthorizationBloc>(context)
+                      .add(SignOutEvent());
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SignIn()));
                 },
               ),
             ]),
-        body: DriveList(),
+        body: MultiBlocProvider(providers: [
+          BlocProvider<DrivesBloc>(
+            create: (context) => DrivesBloc(DrivesRepository())..add(DrivesLoadEvent()),
+          ),
+        ], child: DriveList()),
       );
     });
   }
