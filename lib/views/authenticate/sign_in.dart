@@ -1,4 +1,5 @@
 import 'package:Gively/blocs/authorization_bloc/authorization_bloc.dart';
+import 'package:Gively/views/authenticate/register.dart';
 import 'package:Gively/views/home/home.dart';
 import 'package:Gively/views/widgets/shared/flushbar_widgets.dart';
 import 'package:flutter/material.dart';
@@ -28,38 +29,19 @@ class _SignInState extends State<SignIn> {
       if (state is AuthorizationSuccessState) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => Home()));
-      } else if (state is AuthorizationInvalidEmail) {
-        flushBarError(context, "Email is invalid");
-      } else if (state is AuthorizationInvalidPasswordState) {
-        flushBarError(context, "You must enter a password");
       } else if (state is AuthorizationFailState) {
         flushBarError(
-            context,"This information does not match our records. Try again.");
-      } else if (state is NotEmailVerifiedState) {
-        flushBarError(context, "You must verify your email before continuing");
+            context, state.message);
       }
     }, builder: (context, state) {
       if (state is AuthorizationPendingState) {
         return Loading();
       } else {
         return Scaffold(
-          resizeToAvoidBottomPadding: false,
+          resizeToAvoidBottomPadding: true,
           backgroundColor: Colors.white,
           appBar: AppBar(
             backgroundColor: kPrimaryColor,
-            title: Text('Sign in to Gively'),
-            actions: <Widget>[
-              FlatButton.icon(
-                  icon: Icon(
-                    Icons.person,
-                    color: Colors.white,
-                  ),
-                  label:
-                      Text('Register', style: TextStyle(color: Colors.white)),
-                  onPressed: () {
-                    widget.toggleView();
-                  })
-            ],
           ),
           body: SingleChildScrollView(
             child: Container(
@@ -67,6 +49,7 @@ class _SignInState extends State<SignIn> {
               child: Form(
                 key: _formKey,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     new Image.asset("assets/logo.png", width: 400, height: 225),
                     SizedBox(height: 20.0),
@@ -102,12 +85,16 @@ class _SignInState extends State<SignIn> {
                                 SignInEvent(email: email, password: password));
                           }
                         }),
-                    SizedBox(height: 12.0),
-                    Text(
-                      error,
-                      style: TextStyle(color: Colors.red, fontSize: 14.0),
-                    ),
-                    SizedBox(height: 5.0),
+                    SizedBox(height: 10.0),
+                    FlatButton(
+                        child: Text(
+                          'Register',
+                          style: TextStyle(color: kPrimaryColor, decoration: TextDecoration.underline),
+                        ),
+                        onPressed: () async {
+                          Navigator.pushReplacement(
+                              context, MaterialPageRoute(builder: (context) => Register()));
+                        }),
                     // Text("OR",
                     //     style: TextStyle(
                     //         color: Colors.grey, fontSize: 12.0)),

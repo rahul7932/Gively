@@ -43,7 +43,7 @@ class Home extends StatelessWidget {
                 onPressed: () async {
                   BlocProvider.of<AuthorizationBloc>(context)
                       .add(SignOutEvent());
-                  Navigator.push(context,
+                  Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => SignIn()));
                 },
               ),

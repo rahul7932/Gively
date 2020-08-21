@@ -39,16 +39,16 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
   Stream<AuthorizationState> _mapSignInEventToState(SignInEvent event) async* {
     yield AuthorizationPendingState();
     if (!isEmail(event.email))
-      yield AuthorizationInvalidEmail();
+      yield AuthorizationFailState(message: 'This is not a proper email.');
     else if (isNull(event.password) || event.password == "")
-      yield AuthorizationInvalidPasswordState();
+      yield AuthorizationFailState(message: 'Please enter a password.');
     else {
       var user = await _authService.signIn(event.email, event.password);
       if (user == null) {
         yield AuthorizationFailState();
       } else {
         if (!user.emailVerified) {
-          yield NotEmailVerifiedState();
+          yield AuthorizationFailState(message: 'Check your inbox to validate your email');
         } else {
           // _secureStorageService.saveUserInfo(user);
           yield AuthorizationSuccessState(user);
@@ -58,13 +58,18 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
   }
 
   Stream<AuthorizationState> _mapSignUpEventToState(SignUpEvent event) async* {
-    await _authService.signUp(event.email, event.password);
-    yield VerificationEmailSentState();
+   String status =  _authService.signUp(event.email, event.password);
+   if(status=='success') {
+     yield VerificationEmailSentState();
+   }
+   else {
+     yield AuthorizationFailState(message: status);
+   }
   }
 
   Stream<AuthorizationState> _mapCheckStoredAuthDataToState(
       CheckStoredAuthDataEvent event) async* {
-    User user = await _authService.checkForExistingSignIn();
+    User user = _authService.currentUserStatus();
     if (user != null) yield AuthorizationSuccessState(user);
   }
 }

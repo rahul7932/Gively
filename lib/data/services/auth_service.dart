@@ -10,7 +10,6 @@ class AuthService {
     try {
       User user =  await _authRepository.signIn(email, password);
       if(user != null){
-        _authRepository.saveSecureData(email, password);
       }
       return user;
     } catch (error) {
@@ -19,19 +18,18 @@ class AuthService {
     return null;
   }
 
-  Future<User> checkForExistingSignIn()async{
-    String password = await _authRepository.checkForSecurePassword();
-    String userName = await _authRepository.checkForSecureUsername();
-    return await signIn(userName, password);
+  User currentUserStatus(){
+    return _authRepository.currentUserStatus();
   }
 
   void signOut(){
     _authRepository.signOut();
   }
 
-  Future signUp(String email, String password) async {
+  String signUp(String email, String password) {
     try {
       _authRepository.signUp(email,password);
+      return 'success';
     } catch (error) {
       print(error.toString());
       return null;
