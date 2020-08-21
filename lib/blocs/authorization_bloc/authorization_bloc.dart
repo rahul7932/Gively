@@ -6,6 +6,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:validators/validators.dart';
+import 'package:meta/meta.dart';
 part 'authorization_event.dart';
 part 'authorization_state.dart';
 
@@ -45,7 +46,7 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
     else {
       var user = await _authService.signIn(event.email, event.password);
       if (user == null) {
-        yield AuthorizationFailState();
+        yield AuthorizationFailState(message:'The information you provided does not match our records.');
       } else {
         if (!user.emailVerified) {
           yield AuthorizationFailState(message: 'Check your inbox to validate your email');

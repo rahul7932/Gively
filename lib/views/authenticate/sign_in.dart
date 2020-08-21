@@ -8,30 +8,24 @@ import 'package:Gively/views/widgets/shared/loading.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignIn extends StatefulWidget {
-  final Function toggleView;
-  SignIn({this.toggleView});
-
   @override
   _SignInState createState() => _SignInState();
 }
 
 class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
-
-  String email = '';
-  String password = '';
-  String error = '';
+  final _userNameTextController = TextEditingController();
+  final _passwordTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthorizationBloc, AuthorizationState>(
         listener: (context, state) {
       if (state is AuthorizationSuccessState) {
-        Navigator.push(
+        Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => Home()));
       } else if (state is AuthorizationFailState) {
-        flushBarError(
-            context, state.message);
+        flushBarError(context, state.message);
       }
     }, builder: (context, state) {
       if (state is AuthorizationPendingState) {
@@ -54,24 +48,22 @@ class _SignInState extends State<SignIn> {
                     new Image.asset("assets/logo.png", width: 400, height: 225),
                     SizedBox(height: 20.0),
                     TextFormField(
+                        controller: _userNameTextController,
                         decoration:
                             textInputDecoration.copyWith(hintText: 'Email'),
                         validator: (val) =>
                             val.isEmpty ? 'Enter an Email' : null,
-                        onChanged: (val) {
-                          setState(() => email = val);
-                        }),
+                       ),
                     SizedBox(height: 20.0),
                     TextFormField(
-                        decoration:
-                            textInputDecoration.copyWith(hintText: 'Password'),
-                        obscureText: true,
-                        validator: (val) => val.length < 6
-                            ? 'Enter an a password 6+ chars long'
-                            : null,
-                        onChanged: (val) {
-                          setState(() => password = val);
-                        }),
+                      controller: _passwordTextController,
+                      decoration:
+                          textInputDecoration.copyWith(hintText: 'Password'),
+                      obscureText: true,
+                      validator: (val) => val.length < 6
+                          ? 'Enter an a password 6+ chars long'
+                          : null,
+                    ),
                     SizedBox(height: 20.0),
                     RaisedButton(
                         color: kPrimaryColor,
@@ -82,18 +74,24 @@ class _SignInState extends State<SignIn> {
                         onPressed: () async {
                           if (_formKey.currentState.validate()) {
                             BlocProvider.of<AuthorizationBloc>(context).add(
-                                SignInEvent(email: email, password: password));
+                                SignInEvent(
+                                    email: _userNameTextController.text,
+                                    password: _passwordTextController.text));
                           }
                         }),
                     SizedBox(height: 10.0),
                     FlatButton(
                         child: Text(
                           'Register',
-                          style: TextStyle(color: kPrimaryColor, decoration: TextDecoration.underline),
+                          style: TextStyle(
+                              color: kPrimaryColor,
+                              decoration: TextDecoration.underline),
                         ),
                         onPressed: () async {
                           Navigator.pushReplacement(
-                              context, MaterialPageRoute(builder: (context) => Register()));
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Register()));
                         }),
                     // Text("OR",
                     //     style: TextStyle(

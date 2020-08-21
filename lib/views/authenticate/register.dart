@@ -7,8 +7,6 @@ import 'package:Gively/views/widgets/shared/loading.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Register extends StatefulWidget {
-  final Function toggleView;
-  Register({this.toggleView});
 
   @override
   _RegisterState createState() => _RegisterState();
@@ -16,11 +14,8 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
-  bool loading = false;
-
-  String email = '';
-  String password = '';
-  String error = '';
+  final _passwordTextController = TextEditingController();
+  final _usernameTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -58,20 +53,16 @@ class _RegisterState extends State<Register> {
                               textInputDecoration.copyWith(hintText: 'Email'),
                           validator: (val) =>
                               val.isEmpty ? 'Enter an Email' : null,
-                          onChanged: (val) {
-                            setState(() => email = val);
-                          }),
+                          ),
                       SizedBox(height: 20.0),
                       TextFormField(
+                        controller: _passwordTextController,
                           decoration:
                               textInputDecoration.copyWith(hintText: 'Password'),
                           validator: (val) => val.length < 6
                               ? 'Enter an a password 6+ chars long'
                               : null,
-                          obscureText: true,
-                          onChanged: (val) {
-                            setState(() => password = val);
-                          }),
+                          obscureText: true,),
                       SizedBox(height: 20.0),
                       RaisedButton(
                           color: kPrimaryColor, //green[400]
@@ -82,7 +73,7 @@ class _RegisterState extends State<Register> {
                           onPressed: () async {
                             if (_formKey.currentState.validate()) {
                               BlocProvider.of<AuthorizationBloc>(context).add(
-                                  SignUpEvent(email: email, password: password));
+                                  SignUpEvent(email: _usernameTextController.text, password: _passwordTextController.text));
                             }
                           }),
                       SizedBox(height: 30.0),

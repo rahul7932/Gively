@@ -17,7 +17,7 @@ class AuthorizationSuccessState extends AuthorizationState {
 }
 
 class AuthorizationFailState extends AuthorizationState {
-  AuthorizationFailState({this.message});
+  AuthorizationFailState({@required this.message});
   final String message;
   @override
   List<Object> get props => [message];
