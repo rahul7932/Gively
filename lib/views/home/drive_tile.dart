@@ -2,6 +2,7 @@ import 'package:Gively/data/models/models.dart';
 import 'package:Gively/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:intl/intl.dart';
 
 class DriveTile extends StatelessWidget {
   final Drive drive;
@@ -92,7 +93,7 @@ class DriveTile extends StatelessWidget {
                                           color: Colors.white,
                                         )),
                                     SizedBox(height: 15),
-                                    Text('Dates Active:' + ' ${drive.startDate}',
+                                    Text('Dates Active: ${DateFormat('MM/dd/yyyy').format(drive.startDate)} -  ${DateFormat('MM/dd/yyyy').format(drive.endDate)}',
                                         style: TextStyle(
                                           fontSize: 20.0,
                                           color: Colors.white,
