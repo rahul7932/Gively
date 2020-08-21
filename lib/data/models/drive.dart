@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 class Drive extends Equatable {
@@ -8,8 +7,8 @@ class Drive extends Equatable {
   final String contactEmail;
   final String descriptionShort;
   final String descriptionLong;
-  final Timestamp startDate;
-  final Timestamp endDate;
+  final DateTime startDate;
+  final DateTime endDate;
   final num maxDonations;
   final num currentDonations;
   final String formLink;
@@ -32,12 +31,13 @@ class Drive extends Equatable {
         locationName = json['locationName'] ?? '',
         clubName = json['clubName'] ?? '',
         contactEmail = json['contactEmail'] ?? '',
-        descriptionShort = json['descriptionShort']?? '',
-        descriptionLong = json['descriptionLong']?? '',
-        startDate = json['startDate']?? Timestamp.now(),
-        endDate = json['endDate'] ?? Timestamp.now(),
+        descriptionShort = json['descriptionShort'] ?? '',
+        descriptionLong = json['descriptionLong'] ?? '',
+        startDate =
+           json['startDate']?.toDate() ?? DateTime.now(),
+        endDate =json['endDate']?.toDate() ?? DateTime.now(),
         maxDonations = json['maxDonations'] ?? 0,
-        currentDonations = json['currentDonations']?? 0,
+        currentDonations = json['currentDonations'] ?? 0,
         formLink = json['formLink'] ?? '';
 
   Map<String, dynamic> toJson() => {
@@ -68,5 +68,4 @@ class Drive extends Equatable {
         maxDonations,
         formLink
       ];
-
 }

@@ -50,7 +50,7 @@ class Home extends StatelessWidget {
             ]),
         body: MultiBlocProvider(providers: [
           BlocProvider<DrivesBloc>(
-            create: (context) => DrivesBloc(DrivesRepository())..add(DrivesLoadEvent()),
+            create: (context) => DrivesBloc(DrivesRepository()),
           ),
         ], child: DriveList()),
       );

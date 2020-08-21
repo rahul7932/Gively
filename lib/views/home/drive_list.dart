@@ -16,8 +16,12 @@ class _DriveListState extends State<DriveList> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<DrivesBloc, DrivesState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+        },
         builder: (context, state) {
+          if(state is DrivesLoading){
+            BlocProvider.of<DrivesBloc>(context).add(DrivesLoadEvent());
+          }
           if (state is DrivesLoadSuccess) {
             return Container(
               padding: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
