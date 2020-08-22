@@ -49,6 +49,7 @@ class _RegisterState extends State<Register> {
                       new Image.asset("assets/logo.png", width: 400, height: 225),
                       SizedBox(height: 20.0),
                       TextFormField(
+                        controller: _usernameTextController,
                           decoration:
                               textInputDecoration.copyWith(hintText: 'Email'),
                           validator: (val) =>

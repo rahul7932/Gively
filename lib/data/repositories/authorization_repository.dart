@@ -26,7 +26,7 @@ class AuthRepository extends IAuthorizationRepository {
   Future<String> signUp(String email, String password) async {
     try {
       UserCredential user =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -44,9 +44,11 @@ class AuthRepository extends IAuthorizationRepository {
     return 'An unknown error has occurred. Please try again.';
   }
 
-  @override User currentUserStatus(){
+  @override
+  User currentUserStatus() {
     return _auth.currentUser;
   }
+
   @override
   void forgotPasswordRequest(String email) async {
     await _auth.sendPasswordResetEmail(email: email);
