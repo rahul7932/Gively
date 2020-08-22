@@ -9,35 +9,7 @@ class DriveTile extends StatelessWidget {
   DriveTile({this.drive});
 
   backgroundImageMethod() {
-    if ('${drive.locationName}' == 'Independence High School') {
-      return Image.asset('assets/indylogo.png');
-    } else if ('${drive.locationName}' == 'Briar Woods High School') {
-      return Image.asset(
-        'assets/bwhslogo.jpg',
-      );
-    } else if ('${drive.locationName}' == 'Loudoun County High School') {
-      return Image.asset(
-        'assets/lchslogo.png',
-      );
-    } else if ('${drive.locationName}' == 'John Champe High School') {
-      return Image.asset(
-        'assets/jchslogo.png',
-      );
-    } else if ('${drive.locationName}' == 'Freedom High School') {
-      return Image.asset(
-        'assets/fhslogo.jpg',
-      );
-    } else if ('${drive.locationName}' == 'Dominion High School') {
-      return Image.asset(
-        'assets/dhslogo.png',
-      );
-    } else if ('${drive.locationName}' == 'Park View High School') {
-      return Image.asset(
-        'assets/pvhslogo.png',
-      );
-    } else {
-      return Image.asset('assets/rrhslogo.png');
-    }
+    return Image.network('${drive.imageLink}');
   }
 
   @override
@@ -79,7 +51,8 @@ class DriveTile extends StatelessWidget {
                                     SizedBox(height: 25),
                                     Text('Address:' + ' ${drive.address}',
                                         style: TextStyle(
-                                            fontSize: 20.0, color: Colors.white)),
+                                            fontSize: 20.0,
+                                            color: Colors.white)),
                                     SizedBox(height: 15),
                                     Text('School:' + ' ${drive.locationName}',
                                         style: TextStyle(
@@ -93,7 +66,8 @@ class DriveTile extends StatelessWidget {
                                           color: Colors.white,
                                         )),
                                     SizedBox(height: 15),
-                                    Text('Dates Active: ${DateFormat('MM/dd/yyyy').format(drive.startDate)} -  ${DateFormat('MM/dd/yyyy').format(drive.endDate)}',
+                                    Text(
+                                        'Dates Active: ${DateFormat('MM/dd/yyyy').format(drive.startDate)} -  ${DateFormat('MM/dd/yyyy').format(drive.endDate)}',
                                         style: TextStyle(
                                           fontSize: 20.0,
                                           color: Colors.white,

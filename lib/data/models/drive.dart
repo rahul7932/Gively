@@ -12,6 +12,7 @@ class Drive extends Equatable {
   final num maxDonations;
   final num currentDonations;
   final String formLink;
+  final String imageLink;
 
   Drive(
       {this.address,
@@ -24,7 +25,8 @@ class Drive extends Equatable {
       this.endDate,
       this.currentDonations,
       this.maxDonations,
-      this.formLink});
+      this.formLink,
+      this.imageLink});
 
   Drive.fromJson(Map<String, dynamic> json)
       : address = json['address'] ?? '',
@@ -33,12 +35,12 @@ class Drive extends Equatable {
         contactEmail = json['contactEmail'] ?? '',
         descriptionShort = json['descriptionShort'] ?? '',
         descriptionLong = json['descriptionLong'] ?? '',
-        startDate =
-           json['startDate']?.toDate() ?? DateTime.now(),
-        endDate =json['endDate']?.toDate() ?? DateTime.now(),
+        startDate = json['startDate']?.toDate() ?? DateTime.now(),
+        endDate = json['endDate']?.toDate() ?? DateTime.now(),
         maxDonations = json['maxDonations'] ?? 0,
         currentDonations = json['currentDonations'] ?? 0,
-        formLink = json['formLink'] ?? '';
+        formLink = json['formLink'] ?? '',
+        imageLink = json['imageLink'] ?? '';
 
   Map<String, dynamic> toJson() => {
         'address': address,
@@ -52,6 +54,7 @@ class Drive extends Equatable {
         'maxDonations': maxDonations,
         'currentDonations': currentDonations,
         'formLink': formLink,
+        'imageLink': imageLink
       };
 
   @override
@@ -66,6 +69,7 @@ class Drive extends Equatable {
         endDate,
         currentDonations,
         maxDonations,
-        formLink
+        formLink,
+        imageLink
       ];
 }
