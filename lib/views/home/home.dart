@@ -16,7 +16,7 @@ class Home extends StatelessWidget {
       return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-            title: Text('Gively'),
+            title: Text('Dashboard'),
             backgroundColor: kPrimaryColor,
             leading: Row(children: [
               IconButton(
@@ -39,7 +39,7 @@ class Home extends StatelessWidget {
                   Icons.person,
                   color: Colors.white,
                 ),
-                label: Text('logout', style: TextStyle(color: Colors.white)),
+                label: Text('Logout', style: TextStyle(color: Colors.white)),
                 onPressed: () async {
                   BlocProvider.of<AuthorizationBloc>(context)
                       .add(SignOutEvent());

@@ -5,7 +5,7 @@ class InformationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.brown[50],
+        //backgroundColor: Colors.white,
         appBar: AppBar(
             title: Text('More Information'),
             backgroundColor: kPrimaryColor,
@@ -21,18 +21,19 @@ class InformationPage extends StatelessWidget {
                 child: Center(
                     child: Column(children: <Widget>[
                   Text(
-                      'Welcome to Gively! This app provides the Loudoun County Community with access to all of the community donation drives that are occuring in the county. We make donating to schools, churches, temples, homeless shelters, and other initiatives as convenient as it can possibly be! We plan to expand our app throughout NOVA, VA, and eventually the US in the future! Our app is currently patent pending.',
-                      style: TextStyle(
-                          fontSize: 19.0,
-                          color: kPrimaryColor),
+                      'Welcome to Gively! Our app provides communities around the US with access to local community donation drive. We make donating to schools, churches, temples, homeless shelters, and other initiatives as convenient as possible! Our app is currently patent pending. For any questions, please contact givelyteam@gmail.com.',
+                      style: TextStyle(fontSize: 21.0, color: kPrimaryColor),
                       textAlign: TextAlign.center),
-                  SizedBox(height: 10),
+                  // SizedBox(height: 20),
+                  // Text(
+                  //   'For any questions, please contact givelyteam@gmail.com',
+                  //   style: TextStyle(fontSize: 21.0, color: kPrimaryColor),
+                  //   textAlign: TextAlign.center,
+                  // ),
+                  SizedBox(height: 20),
                   Text(
                     '- Rahul Kumar and Rohan Bhansali',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 19.0,
-                        color: kPrimaryColor),
+                    style: TextStyle(fontSize: 21.0, color: kPrimaryColor),
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 370.0),
