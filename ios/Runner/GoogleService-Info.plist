@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>341313606962-1r9qkp3t8o4ira82q4apc8009fvhl8ge.apps.googleusercontent.com</string>
+	<string>968239611031-s2p09u87jcdb5s1sovjmspcas5dcvbhm.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.341313606962-1r9qkp3t8o4ira82q4apc8009fvhl8ge</string>
+	<string>com.googleusercontent.apps.968239611031-s2p09u87jcdb5s1sovjmspcas5dcvbhm</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBK5q4MnhgjAYcC7xs8Ki0NYUXzX-LEywI</string>
+	<string>AIzaSyDE44k-wrwY2aX7vfdIQdO_xiGuKhazj0w</string>
 	<key>GCM_SENDER_ID</key>
-	<string>341313606962</string>
+	<string>968239611031</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.GivelyInc.Gively</string>
+	<string>com.givelyinc.test5</string>
 	<key>PROJECT_ID</key>
-	<string>gively-database</string>
+	<string>gively-update</string>
 	<key>STORAGE_BUCKET</key>
-	<string>gively-database.appspot.com</string>
+	<string>gively-update.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:341313606962:ios:2097dbccf8b3c4ef57f32b</string>
+	<string>1:968239611031:ios:850bffaa826280dec97dd2</string>
 	<key>DATABASE_URL</key>
-	<string>https://gively-database.firebaseio.com</string>
+	<string>https://gively-update.firebaseio.com</string>
 </dict>
 </plist>
